@@ -1,0 +1,87 @@
+<p>
+    <mat-toolbar>
+      <img   src="assets/LogoPetite.png" alt="Logo">
+    </mat-toolbar>
+  </p>
+<main>
+
+ <main class="content2">
+
+     <mat-card class="formulario">
+    <div>
+    <div class="inicioSesion"> 
+        <h1 class="titulo"> Clayens Mexico</h1>
+        <h3 class="subtitulo"> Crear una nueva cuenta. </h3>
+    </div>
+    </div>
+
+     <div>
+     <mat-form-field class="inputs">
+     <mat-label>Nombre</mat-label>
+     <input matInput placeholder="Nombre" [formControl]="name" required>
+    @if (name.invalid) {
+     <mat-error>{{getErrorMessagename()}}</mat-error>
+     }
+      </mat-form-field>
+
+           <mat-form-field class="inputs">
+     <mat-label>Apellido paterno</mat-label>
+     <input matInput placeholder="Apellido paterno" [formControl]="apaterno" required>
+    @if (name.invalid) {
+     <mat-error>{{getErrorMessageapaterno()}}</mat-error>
+     }
+      </mat-form-field>
+
+           <mat-form-field class="inputs">
+     <mat-label>Apellido materno</mat-label>
+     <input matInput placeholder="Apellido materno" [formControl]="amaterno" required>
+    @if (name.invalid) {
+     <mat-error>{{getErrorMessageamaterno()}}</mat-error>
+     }
+      </mat-form-field>
+
+
+      
+           <mat-form-field class="inputs">
+     <mat-label>Numero telefonico</mat-label>
+     <input matInput placeholder="Numero telefonico" [formControl]="numtelefonico" required>
+    @if (numtelefonico.invalid) {
+     <mat-error>{{getErrorMessageNumtelefonico()}}</mat-error>
+     }
+      </mat-form-field>
+    
+    <mat-form-field class="inputs">
+     <mat-label>Email</mat-label>
+     <input matInput placeholder="correo@ejemplo.com" [formControl]="email" required>
+     @if (email.invalid) {
+     <mat-error>{{getErrorMessageEmail()}}</mat-error>
+     }
+     
+    </mat-form-field>
+    <mat-form-field class="inputs">
+     <mat-label>Password</mat-label>
+     <input matInput placeholder="Contraseña" [formControl]="password" required [type]="hide ? 'password' : 'text'">
+     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+     </button>
+     >
+     @if (password.invalid) {
+     <mat-error>{{getErrorMessagePassword()}}</mat-error>
+     } </mat-form-field>
+     <section>
+     <div >
+    <button class="boton-Crear" style="background-color: #E8821F;"  mat-flat-button >Crear cuenta</button>
+     </div>
+     </section>
+    </div>
+  
+    <div> 
+      <h3 class="texto"> ¿Ya tienes una cuenta? <a style="color: #E8821F;" href="login">Iniciar sesion</a></h3>
+      <br>
+    </div>
+
+    
+    </mat-card>
+
+
+</main>

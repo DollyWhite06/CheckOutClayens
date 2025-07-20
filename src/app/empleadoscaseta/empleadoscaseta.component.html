@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gestión de Empleados</title>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+<div class="logo">
+
+<img src="assets/LogoPetite.png" alt="logo">
+
+      </div>    
+      
+      <div class="user-info">
+
+        <div class="user-icon">👤</div>
+        <p>Rene Arteaga Meza</p>
+      
+        <button>Página principal</button>
+        <button>Registro visitantes</button>
+        <button>Accesos</button>
+        <button>Reportes/KPI</button>
+
+           </div>    
+      <a class="logout" href="#">Cerrar sesión</a>
+    </aside>
+
+    <main class="main-content">
+      <header class="header">
+        <h1>GESTIÓN DE EMPLEADOS</h1>
+        <div class="fecha">
+          <label for="fecha">Rango de fecha</label>
+          <input type="date" id="fecha" value="2025-06-01">
+        </div>
+      </header>
+
+      <div class="filtros">
+        <input type="text" placeholder="Num. empleado" />
+        <button class="clear">Clear</button>
+        <button>Dpto</button>
+        <button>Rol</button>
+        <button>Estado</button>
+      </div>
+
+      <table class="tabla-empleados">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Ap paterno</th>
+            <th>Ap Materno</th>
+            <th>Correo electrónico</th>
+            <th>Rol</th>
+            <th>Dpto</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>René</td>
+            <td>Arteaga</td>
+            <td>Meza</td>
+            <td>rene22.com</td>
+            <td>Adm</td>
+            <td>Des</td>
+            <td><span class="estado activo">Activo</span></td>
+          </tr>
+          <tr>
+            <td>Victoria</td>
+            <td>Reyes</td>
+            <td>Meza</td>
+            <td>vicky.com</td>
+            <td>Pract</td>
+            <td>Des</td>
+            <td><span class="estado inactivo">Desactivar</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+  </div>
+</body>
+</html>

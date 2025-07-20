@@ -1,0 +1,36 @@
+
+    <mat-toolbar>
+      <img   src="assets/LogoPetite.png" alt="Logo">
+
+    </mat-toolbar>
+
+
+  <main class="content2">
+    <mat-card class="formulario">
+    
+ <h1 class="titulo"> CLAYENS MEXICO </h1>
+ <h3 class="texto">Ingresa el codigo que recibiste a tu correo. </h3>
+ <br>
+   <mat-form-field class="inputs">
+     <mat-label>Codigo*</mat-label>
+     <input matInput placeholder="Codigo*" [formControl]="codigo" required>
+     @if (codigo.invalid) {
+     <mat-error>{{getErrorMessagecodigo()}}</mat-error>
+     }
+    </mat-form-field>
+<br>
+
+
+  <section>
+    <div class="boton-contenedor" >
+   <button class="botones"  style="background-color: #E8821F;" mat-flat-button>Reenviar correo</button><br>
+   <button class="botones" style="background-color: #E8821F;" mat-flat-button>Verificar</button>
+
+    </div>
+    </section>
+ 
+
+
+    </mat-card>
+    
+</main>

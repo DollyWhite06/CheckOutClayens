@@ -1,0 +1,137 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins&family=Roboto&display=swap');
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  background-color: #f4f4f4;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+}
+
+.sidebar {
+  width: 300px;
+  background-color: #2F3E50;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.logo {
+  width: 250px;
+  display: flex;
+  margin-bottom: 60px;
+}
+
+.user-info {
+  text-align: center;
+}
+
+.user-info p {
+  font-family: 'open sans', sans-serif;
+  font-size: 24px;
+  margin-bottom: 60px;
+}
+.user-icon {
+  font-size: 90px;
+  margin-bottom: 10px;
+}
+
+.user-info button {
+  background-color: #2F3E50;
+  color: white;
+  border: none;
+  padding: 8px 10px;
+  margin-top: 20px;
+  width: 100%;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.logout {
+  margin-top: auto;
+  color: #fff;
+  text-decoration: none;
+  font-size: 20px;
+  padding-top: 20px;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.banner-img {
+  max-width: 100%;
+  border-radius: 30px;
+  margin-top: 10px;
+  
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0px, 1fr));
+  gap: 40px;
+  height: 220px;
+  padding: 20px;
+}
+
+.card {
+  background-color: white;
+  padding: 30px;
+  text-align: center;
+  border-radius: 25px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  font-size: 30px;
+  margin-bottom: ;
+}
+
+.card span {
+  font-size: 30px;
+  display: block;
+  margin-top: 20px;
+}
+
+.orange {
+  background-color: #E8821F;
+  color: white;
+    cursor: pointer;
+
+}
+
+
+.blue {
+  background-color: #2F3E50;
+  color: white;
+    cursor: pointer;
+
+}
+
+.pie-chart {
+  width: 60px;
+  height: 60px;
+  background: conic-gradient(#ffffff 90%, rgba(255,255,255,0.3) 90%);
+  border-radius: 50%;
+  margin: 10px auto 0;
+}

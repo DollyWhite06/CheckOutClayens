@@ -1,0 +1,69 @@
+import { Component } from '@angular/core';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { MatSlideToggle } from '@angular/material/slide-toggle';
+import {MatCardModule} from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {FormControl, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatDividerModule} from '@angular/material/divider';
+
+@Component({
+  selector: 'app-modify-data',
+  imports: [MatSlideToggle, MatToolbarModule, MatButtonToggleModule, MatCardModule,
+    MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule, MatIconModule, MatDividerModule, MatButtonModule],
+  
+  templateUrl: './modify-data.component.html',
+  styleUrl: './modify-data.component.css'
+})
+export class ModifyDataComponent {
+hide = true;
+ email = new FormControl('', [Validators.required, Validators.email]);  
+ name = new FormControl('',[Validators.required, Validators.minLength(20)] )
+ apaterno = new FormControl('',[Validators.required, Validators.minLength(20)] )
+ amaterno = new FormControl('',[Validators.required, Validators.minLength(20)] )
+ numtelefonico = new FormControl('',[Validators.required, Validators.minLength(8)] )
+
+
+ getErrorMessageEmail() {
+ if (this.email.hasError('required')) {
+ return 'Ingresa tu email';
+ }
+
+ return this.email.hasError('email') ? 'Email invalido' : '';
+ }
+ 
+ getErrorMessagename() {
+  if (this.name.hasError('required')) {
+   return 'Ingresa tu nombre';
+  }
+
+ return this.name.hasError('name') ? 'Nombre invalido' : '';
+ }
+
+  getErrorMessageapaterno() {
+  if (this.apaterno.hasError('required')) {
+   return 'Ingresa tu Apellido paterno';
+  }
+
+ return this.name.hasError('apaterno') ? 'Apellido paterno invalido' : '';
+ }
+
+  getErrorMessageamaterno() {
+  if (this.name.hasError('required')) {
+   return 'Ingresa tu apellido materno';
+  }
+
+ return this.name.hasError('amaterno') ? 'Apellido materno invalido' : '';
+ }
+
+ getErrorMessageNumtelefonico() {
+ if (this.numtelefonico.hasError('required')) {
+ return 'Ingresa tu numero telefonico';
+ }
+
+ return this.numtelefonico.hasError('numero telefonico') ? 'Numero telefonico invalida' : '';
+ }
+}
