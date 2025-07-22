@@ -30,21 +30,45 @@
 
     <main class="main-content">
       <header class="header">
-        <h1>GESTIÓN DE EMPLEADOS</h1>
-        <div class="fecha">
-          <label for="fecha">Rango de fecha</label>
-          <input type="date" id="fecha" value="2025-06-01">
-        </div>
+        <h1 style="color: #2F3E50; font-size: 30px;">GESTIÓN DE EMPLEADOS</h1>
+        
       </header>
 
-      <div class="filtros">
-        <input type="text" placeholder="Num. empleado" />
-        <button class="clear">Clear</button>
-        <button>Dpto</button>
-        <button>Rol</button>
-        <button>Estado</button>
-      </div>
+      
 
+
+ <div class="filtros" >
+
+        <mat-form-field>
+     <mat-label>Num. empleado</mat-label>
+     <input matInput placeholder="Num. empleado" [formControl]="numempleado" required>
+     @if (numempleado.invalid) {
+     <mat-error>{{getErrorMessageNum()}}</mat-error>}
+        </mat-form-field>
+
+        <button class="buscar">Buscar</button>
+                <button class="clear" (click)="limpiar()">Clear</button>
+
+       <select class="selects">
+          <option value="">Dpto</option>
+          <option value="activo">Produccion</option>
+          <option value="inactivo">Administrativo</option>
+        </select>
+ <select class="selects">
+          <option value="">Rol</option>
+        <option value="activo">Produccion</option>
+          <option value="inactivo">Administrativo</option>
+        </select>     
+         <select class="selects">
+          <option value="">Estado</option>
+          <option value="activo">Activo</option>
+          <option value="inactivo">Inactivo</option>
+        </select>
+
+        <div class="fecha">
+          <input type="date" id="fecha" value="2025-06-01">
+        </div>
+      </div>
       <table class="tabla-empleados">
         <thead>
           <tr>
@@ -74,7 +98,7 @@
             <td>vicky.com</td>
             <td>Pract</td>
             <td>Des</td>
-            <td><span class="estado inactivo">Desactivar</span></td>
+            <td><span class="estado inactivo">Inactivo</span></td>
           </tr>
         </tbody>
       </table>
