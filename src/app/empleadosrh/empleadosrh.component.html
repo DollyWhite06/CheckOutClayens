@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gestión de Empleados</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+<div class="logo">
+
+<img src="assets/LogoPetite.png" alt="logo">
+
+      </div>    
+      
+      <div class="user-info">
+
+        <div class="user-icon">👤</div>
+        <p>Rene Arteaga Meza</p>
+      
+        <button>Página principal</button>
+        <button>Registro visitantes</button>
+        <button>Accesos</button>
+        <button>Reportes/KPI</button>
+
+           </div>    
+      <a class="logout" href="#">Cerrar sesión</a>
+    </aside>
+
+    <main class="main-content">
+      <header class="header">
+        <h1 style="color: #2F3E50; font-size: 30px;">GESTIÓN DE EMPLEADOS</h1>
+        
+      </header>
+
+      
+
+
+ <div class="filtros" >
+
+        <mat-form-field style="width: 20%;">
+     <mat-label>Nombre completo</mat-label>
+     <input matInput placeholder="Nombre completo del empleado" [formControl]="nombre" required>
+     @if (nombre.invalid) {
+     <mat-error>{{getErrorMessageNombre()}}</mat-error>}
+        </mat-form-field>
+
+        <button >  <i class="fas fa-search icon"   title="Buscar"></i> <br> 
+</button>
+        <button class="clear" (click)="limpiarnom()">Clear</button>
+
+        <mat-form-field>
+     <mat-label>Num. empleado</mat-label>
+     <input matInput placeholder="Num. empleado" [formControl]="numempleado" required>
+     @if (numempleado.invalid) {
+     <mat-error>{{getErrorMessageNum()}}</mat-error>}
+        </mat-form-field>
+
+        <button>  <i class="fas fa-search icon"   title="Buscar"></i> <br> 
+</button>
+        <button class="clear" (click)="limpiarnum()">Clear</button>
+
+       <select class="selects">
+          <option value="">Dpto</option>
+          <option value="activo">Produccion</option>
+          <option value="inactivo">Administrativo</option>
+        </select>
+ <select class="selects">
+          <option value="">Rol</option>
+        <option value="activo">Produccion</option>
+          <option value="inactivo">Administrativo</option>
+        </select>     
+         <select class="selects">
+          <option value="">Estado</option>
+          <option value="activo">Activo</option>
+          <option value="inactivo">Inactivo</option>
+        </select>
+
+        <div class="fecha">
+          <input type="date" id="fecha" value="2025-06-01">
+        </div>
+        <button style="background-color: white;">      <i class="fas fa-plus-circle icon" title="Agregar nuevo"></i><br> 
+</button>
+      </div>
+        
+
+
+      <table class="tabla-empleados">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Ap paterno</th>
+            <th>Ap Materno</th>
+            <th>Correo electrónico</th>
+            <th>Rol</th>
+            <th>Dpto</th>
+            <th>Estado</th>
+            <th>Editar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>René</td>
+            <td>Arteaga</td>
+            <td>Meza</td>
+            <td>rene22.com</td>
+            <td>Adm</td>
+            <td>Des</td>
+            <td><span class="estado activo">Activo</span></td>
+            <td>
+    <i class="fas fa-cog icon"   title="Configuracion"></i> <br> 
+            </td>
+          </tr>
+          <tr>
+            <td>Victoria</td>
+            <td>Reyes</td>
+            <td>Meza</td>
+            <td>vicky.com</td>
+            <td>Pract</td>
+            <td>Des</td>
+            <td><span class="estado inactivo">Inactivo</span></td>
+            <td>
+    <i class="fas fa-cog icon"   title="Configuracion"></i> <br> 
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+  </div>
+</body>
+</html>

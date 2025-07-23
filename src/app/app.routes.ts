@@ -35,9 +35,9 @@ export const routes: Routes = [
 {path: 'empleadoscaseta', component: EmpleadoscasetaComponent},
 {path: 'nuevorh', component: NuevoempleadorhComponent},
 {path: 'visitasrh', component: VisitasrhComponent},
+{path: 'empleadosrh', component: EmpleadosrhComponent},
 
 // en proceso
-{path: 'empleadosrh', component: EmpleadosrhComponent},
 {path: 'kpirh', component: KpirhComponent},
 {path: 'asisrh', component: AsistenciasrhComponent},
 {path: 'visitantes', component: RegistrocasetaComponent},

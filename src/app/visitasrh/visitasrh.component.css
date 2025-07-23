@@ -124,13 +124,12 @@ margin-left: 4px;
   cursor: pointer;
   border-radius: 20px;
    margin-top: 20px;
+   background-color: white;
   margin-bottom: 20px;
 }
 
 .filtros .clear {
-  background-color: #999;
-}
-.filtros .buscar {
+ 
   background-color: #E8821F;
 }
 
@@ -213,3 +212,13 @@ padding: 6px;
   background-color: #e74c3c;
   color: white;
 }
+
+.icon { background-color: white;margin: 10px; font-size: 30px; transition: transform 0.3s ease; color: #2f3e50;}
+
+    .icon:hover { transform: scale(1.2); }
+     .acciones {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      font-size: 26px;
+    }

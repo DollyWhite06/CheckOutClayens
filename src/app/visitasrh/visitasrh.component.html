@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gestión de visitantes</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 <body>
   <div class="container">
@@ -46,8 +48,8 @@
      <mat-error>{{getErrorMessageNombre()}}</mat-error>}
         </mat-form-field>
 
-        <button class="buscar">Buscar</button>
-                <button class="clear" (click)="limpiar()">Clear</button>
+<button>  <i class="fas fa-search icon"   title="Buscar"></i> <br> 
+</button>        <button class="clear" (click)="limpiar()">Clear</button>
 
        <select class="selects">
           <option value="">Estatus</option>
