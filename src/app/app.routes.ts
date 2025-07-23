@@ -32,14 +32,13 @@ export const routes: Routes = [
 {path: 'cambiarcontrasena', component: ChangedPasswordComponent }, //listo - cambiar contraseña usuario
 {path: 'homerh', component: HomerhComponent},
 {path: 'homecaseta', component: HomecasetaComponent},
-
 {path: 'empleadoscaseta', component: EmpleadoscasetaComponent},
+{path: 'nuevorh', component: NuevoempleadorhComponent},
 
 // en proceso
 {path: 'empleadosrh', component: EmpleadosrhComponent},
 {path: 'visitasrh', component: VisitasrhComponent},
 {path: 'kpirh', component: KpirhComponent},
-{path: 'nuevorh', component: NuevoempleadorhComponent},
 {path: 'asisrh', component: AsistenciasrhComponent},
 {path: 'visitantes', component: RegistrocasetaComponent},
 {path: 'kpicaseta', component: KpicasetaComponent},

@@ -12,12 +12,15 @@ import {MatDividerModule} from '@angular/material/divider';
   styleUrl: './empleadoscaseta.component.css'
 })
 export class EmpleadoscasetaComponent {
+
 hide = true;
 numempleado = new FormControl('', [
   Validators.minLength(8),
   Validators.maxLength(8),
    Validators.pattern('^[0-9]*$')
 ]);
+
+
 limpiar() {
   this.numempleado.reset();
 }

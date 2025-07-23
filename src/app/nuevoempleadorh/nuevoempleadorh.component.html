@@ -1,1 +1,133 @@
-<p>nuevoempleadorh works!</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nuevo empleado</title>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+<div class="logo">
+
+<img src="assets/LogoPetite.png" alt="logo">
+
+      </div>    
+
+    </aside>
+<div style="text-align: center; ">
+          <h1 style="color: #2F3E50; font-size: 30px;"> EMPLEADO NUEVO</h1>
+      
+
+      <main class="content2">
+
+     <mat-card class="formulario">
+
+     <div>
+      
+     <mat-form-field class="inputs">
+     <mat-label>Nombre</mat-label>
+     <input matInput placeholder="Nombre" [formControl]="nombre" required>
+    @if (nombre.invalid) {
+     <mat-error>{{getErrorMessageNombre()}}</mat-error>
+     }
+      </mat-form-field>
+
+           <mat-form-field class="inputs">
+     <mat-label>Apellido paterno</mat-label>
+     <input matInput placeholder="Apellido paterno" [formControl]="apaterno" required>
+    @if (apaterno.invalid) {
+     <mat-error>{{getErrorMessageapaterno()}}</mat-error>
+     }
+      </mat-form-field>
+
+           <mat-form-field class="inputs">
+     <mat-label>Apellido materno</mat-label>
+     <input matInput placeholder="Apellido materno" [formControl]="amaterno" required>
+    @if (amaterno.invalid) {
+     <mat-error>{{getErrorMessageamaterno()}}</mat-error>
+     }
+      </mat-form-field>
+
+
+      
+           <mat-form-field class="inputs">
+     <mat-label>Numero telefonico</mat-label>
+     <input matInput placeholder="Numero telefonico" [formControl]="num" required>
+    @if (num.invalid) {
+     <mat-error>{{getErrorMessageNum()}}</mat-error>
+     }
+      </mat-form-field>
+    
+<div class="inputs">
+  <select id="departamento" class="select-input">
+        <option value="" disabled selected>Selecciona un departamento</option>
+    <option value="administracion">Administración</option>
+    <option value="produccion">Producción</option>
+    <option value="recursos_humanos">Recursos Humanos</option>
+  </select>
+</div>
+
+<div class="inputs">
+  <select id="rol" class="select-input">
+        <option value="" disabled selected>Selecciona un rol</option>
+
+    <option value="empleado">Empleado</option>
+    <option value="supervisor">Supervisor</option>
+    <option value="admin">Administrador</option>
+  </select>
+</div>
+
+
+    <mat-form-field class="inputs">
+     <mat-label>Email</mat-label>
+     <input matInput placeholder="correo@ejemplo.com" [formControl]="email" required>
+     @if (email.invalid) {
+     <mat-error>{{getErrorMessageEmail()}}</mat-error>
+     }
+
+     </mat-form-field>
+     
+     <mat-form-field appearance="fill" class="select-input">
+  <mat-label>Fecha de ingreso</mat-label>
+  <input matInput [matDatepicker]="picker" [formControl]="fecha">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+  <mat-error *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)">
+    {{ getErrorMessageFecha() }}
+  </mat-error>
+</mat-form-field>
+
+
+
+     <mat-form-field class="inputs">
+     <mat-label>Tarjeta</mat-label>
+     <input matInput placeholder="Tarjeta" [formControl]="tarjeta" required>
+     @if (tarjeta.invalid) {
+     <mat-error>{{getErrorMessageTarjeta()}}</mat-error>
+     }
+     
+    </mat-form-field>
+     <section>
+     <div >
+                <button class="botonsote" style="background-color: #E8821F;"  mat-flat-button >Datos biometricos</button> <br>
+
+          <button class="boton" style="background-color: #E8821F;"  mat-flat-button >Cancelar</button> 
+    <button class="boton" style="background-color: #E8821F;"  mat-flat-button >Guardar</button>
+     </div>
+     </section>
+    </div>
+  
+  
+
+    
+    </mat-card>
+
+
+
+ 
+    </main>
+     </div>  </div>
+
+</body>
+</html>
