@@ -1,0 +1,215 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+}
+
+.sidebar {
+  width: 300px;
+  background-color: #2F3E50;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.logo {
+  width: 250px;
+  display: flex;
+  margin-bottom: 60px;
+}
+
+.user-info {
+  text-align: center;
+}
+
+.user-info p {
+  font-family: 'open sans', sans-serif;
+  font-size: 24px;
+  margin-bottom: 60px;
+}
+.user-icon {
+  font-size: 90px;
+  margin-bottom: 10px;
+}
+
+.user-info button {
+  background-color: #2F3E50;
+  color: white;
+  border: none;
+  padding: 8px 10px;
+  margin-top: 20px;
+  width: 100%;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.logout {
+  margin-top: auto;
+  color: #fff;
+  text-decoration: none;
+  font-size: 20px;
+  padding-top: 20px;
+}
+
+
+nav a {
+   background-color: #2F3E50;
+  color: white;
+  border: none;
+  padding: 8px 10px;
+  margin-top: 20px;
+  width: 100%;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 24px;
+}
+
+.fecha {
+ font-family: 'open sans', sans-serif;
+  font-size: 20px;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+margin-left: 4px;
+}
+
+.filtros {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+ 
+}
+
+
+.filtros input {
+  padding: 6px;
+  width: 180px;
+}
+
+.filtros button {
+  padding: 6px 12px;
+  border: none;
+ font-family: 'open sans', sans-serif;
+  font-size: 20px;
+    color: white;
+  cursor: pointer;
+  border-radius: 20px;
+   margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.filtros .clear {
+  background-color: #999;
+}
+.filtros .buscar {
+  background-color: #E8821F;
+}
+
+.filtros .selects {
+ font-family: 'open sans', sans-serif;
+  font-size: 20px;
+    background-color: #E8821F;
+    color: white;
+  border-radius: 20px ;
+  align-items: center;
+  text-align: center;
+padding: 6px;
+  border: none;
+  cursor: pointer;
+  width: 180px;
+     margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+  .filtros .textbox {
+ font-family: 'open sans', sans-serif;
+  font-size: 20px;
+    color: white;
+  align-items: center;
+  text-align: center;
+
+  }
+
+.filtros mat-form-field {
+  width: 200px;
+  height: 80px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  font-size: 20px;
+}
+
+.filtros .mat-form-field-wrapper {
+  padding: 0;
+}
+
+.filtros .mat-form-field-infix {
+  padding: 6px;
+}
+/* Tabla */
+.tabla-visitantes {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tabla-visitantes th,
+.tabla-visitantes td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.tabla-visitantes thead {
+  background-color: #E8821F;
+  color: white;
+}
+
+.estado {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.completado {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.transito {
+  background-color: #e74c3c;
+  color: white;
+}
