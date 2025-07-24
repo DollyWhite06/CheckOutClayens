@@ -33,16 +33,16 @@ export const routes: Routes = [
 {path: 'homerh', component: HomerhComponent},
 {path: 'homecaseta', component: HomecasetaComponent},
 {path: 'empleadoscaseta', component: EmpleadoscasetaComponent},
-{path: 'nuevorh', component: NuevoempleadorhComponent},
+{path: 'nuevorh', component: NuevoempleadorhComponent}, //falda modal
 {path: 'visitasrh', component: VisitasrhComponent},
-{path: 'empleadosrh', component: EmpleadosrhComponent},
+{path: 'empleadosrh', component: EmpleadosrhComponent}, //falta modal
+{path: 'visitantes', component: RegistrocasetaComponent}, //falta modal
+{path: 'asisrh', component: AsistenciasrhComponent},
+{path: 'accesos', component: AccesoscasetaComponent}, //faltan los datos
 
 // en proceso
 {path: 'kpirh', component: KpirhComponent},
-{path: 'asisrh', component: AsistenciasrhComponent},
-{path: 'visitantes', component: RegistrocasetaComponent},
 {path: 'kpicaseta', component: KpicasetaComponent},
-{path: 'accesos', component: AccesoscasetaComponent},
 
 
 
