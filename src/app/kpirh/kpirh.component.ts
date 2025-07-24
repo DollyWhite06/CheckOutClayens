@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Chart } from 'chart.js';
 
 @Component({
   selector: 'app-kpirh',
@@ -8,4 +9,24 @@ import { Component } from '@angular/core';
 })
 export class KpirhComponent {
 
+  ngAfterViewInit() {
+  new Chart("asistenciaChart", {
+    type: 'doughnut',
+    data: {
+      labels: ['Asistencia', 'Faltas'],
+      datasets: [{
+        data: [90, 10],
+        backgroundColor: ['#E8821F', '#ddd']
+      }]
+    },
+    options: {
+      cutout: '70%',
+      plugins: {
+        legend: {
+          display: false
+        }
+      }
+    }
+  });
+}
 }
