@@ -11,6 +11,7 @@ import {MatDividerModule} from '@angular/material/divider';
   templateUrl: './asistenciasrh.component.html',
   styleUrl: './asistenciasrh.component.css'
 })
+
 export class AsistenciasrhComponent {
 hide = true;
 numempleado = new FormControl('', [

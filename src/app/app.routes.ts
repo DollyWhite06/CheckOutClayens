@@ -39,8 +39,6 @@ export const routes: Routes = [
 {path: 'visitantes', component: RegistrocasetaComponent}, //falta modal
 {path: 'asisrh', component: AsistenciasrhComponent},
 {path: 'accesos', component: AccesoscasetaComponent}, //faltan los datos
-
-// en proceso
 {path: 'kpirh', component: KpirhComponent},
 {path: 'kpicaseta', component: KpicasetaComponent},
 

@@ -1,0 +1,44 @@
+
+ <main class="form">
+
+
+<h2 style="text-align: center;">REGISTRAR VISITA</h2>
+
+<form class="formulario">
+  <mat-form-field appearance="fill" style="width: 100%;">
+    <input matInput placeholder="Nombre" [formControl]="nombre">
+     @if (nombre.invalid) {
+     <mat-error>{{getErrorMessageNombre()}}</mat-error>}
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" style="width: 100%;">
+    <input matInput placeholder="Apellido" [formControl]="apellido">
+   @if (apellido.invalid) {
+     <mat-error>{{getErrorMessageApellido()}}</mat-error>}
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" style="width: 100%;">
+    <input matInput placeholder="Departamento" [formControl]="departamento">
+   @if (departamento.invalid) {
+     <mat-error>{{getErrorMessageDepartamento()}}</mat-error>}
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" style="width: 100%;">
+    <input matInput placeholder="Fecha" [formControl]="fecha">
+     @if (fecha.invalid) {
+     <mat-error>{{getErrorMessageFecha()}}</mat-error>}
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" style="width: 100%;">
+    <input matInput placeholder="Hora entrada" [formControl]="horaentrada">
+   @if (horaentrada.invalid) {
+     <mat-error>{{getErrorMessageHoraentrada()}}</mat-error>}
+  </mat-form-field>
+
+  <div style="display: flex; justify-content: space-around; margin-top: 20px;">
+    <button class="boton" (click)="cancelar()">Cancelar</button>
+    <button class="boton" (click)="guardar()">Guardar</button>
+  </div>
+</form>
+
+</main>

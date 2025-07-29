@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gestión de Empleados</title>
+  <title>Registro de visitantes</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
@@ -68,7 +68,7 @@
         <div class="fecha">
           <input type="date" id="fecha" value="2025-06-01">
         </div>
-        <button style="background-color: white;">      <i class="fas fa-plus-circle icon" title="Agregar nuevo"></i><br> 
+        <button style="background-color: white;">      <i class="fas fa-plus-circle icon" (click)="abrirModal()" title="Agregar nuevo"></i><br> 
 </button>
       </div>
         
@@ -97,7 +97,7 @@
             <td>13:00</td>
             <td><span class="estado completado">Completado</span></td>
             <td>
-    <i class="fas fa-cog icon"   title="Configuracion"></i> <br> 
+    <i class="fas fa-cog icon"  (click)="abrirModal2()" title="Configuracion"></i> <br> 
             </td>
           </tr>
           <tr>

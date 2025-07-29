@@ -3,14 +3,34 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {FormControl, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatDividerModule} from '@angular/material/divider';
+import { MatDialog } from '@angular/material/dialog';
+import { EditarempleadoComponent } from '../editarempleado/editarempleado.component';
+import { MatDialogModule } from '@angular/material/dialog';
+
+
 
 @Component({
   selector: 'app-empleadosrh',
-  imports: [ MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule],
+  imports: [ MatFormFieldModule, MatDialogModule, MatInputModule, FormsModule, ReactiveFormsModule ],
   templateUrl: './empleadosrh.component.html',
-  styleUrl: './empleadosrh.component.css'
+  styleUrls: ['./empleadosrh.component.css']
 })
+
 export class EmpleadosrhComponent {
+
+constructor(public dialog: MatDialog) {}
+abrirModal() {
+  const dialogRef = this.dialog.open(EditarempleadoComponent, {
+    width: '400px'
+  });
+
+  dialogRef.afterClosed().subscribe(resultado => {
+    if (resultado) {
+      console.log('Empleado guardado:', resultado);
+    }
+  });
+}
+
 hide = true;
 numempleado = new FormControl('', [
   Validators.minLength(8),

@@ -7,6 +7,10 @@ import {MatCardModule} from '@angular/material/card';
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DatosbiometricosComponent } from '../datosbiometricos/datosbiometricos.component';
+
 
 @Component({
   selector: 'app-nuevoempleadorh',
@@ -22,6 +26,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 export class NuevoempleadorhComponent {
 hide = true;
 
+
+
 nombre = new FormControl('', [Validators.required,  Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$')])
 apaterno = new FormControl('', [Validators.required,  Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$')])
 amaterno = new FormControl('', [Validators.required,  Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$')])
@@ -32,6 +38,20 @@ num = new FormControl('', [Validators.required, Validators.minLength(10),Validat
 departamento = new FormControl('', Validators.required);
 rol = new FormControl('', Validators.required);
 fecha = new FormControl('', Validators.required);
+
+constructor(public dialog: MatDialog) {}
+abrirModal() {
+  const dialogRef = this.dialog.open(DatosbiometricosComponent, {
+    width: '400px'
+  });
+
+  dialogRef.afterClosed().subscribe(resultado => {
+    if (resultado) {
+      console.log('Visita guardado:', resultado);
+    }
+  });
+}
+
 
 getErrorMessageEmail() {
  if (this.email.hasError('required')) {
@@ -45,11 +65,11 @@ getErrorMessageNombre() {
  return 'Escriba el nomnbre del nuevo empleador';
  }
 
-else if (this.num.hasError('pattern')) {
+else if (this.nombre.hasError('pattern')) {
  return 'Inserte letras';
  }
 
- return this.num.hasError('nombre invalido') ? 'Nombre invalido' : '';
+ return this.nombre.hasError('nombre invalido') ? 'Nombre invalido' : '';
 }
 
 getErrorMessageapaterno() {
@@ -57,22 +77,22 @@ getErrorMessageapaterno() {
  return 'Escriba el apellido paterno del nuevo empleador';
  }
 
-else if (this.num.hasError('pattern')) {
+else if (this.apaterno.hasError('pattern')) {
  return 'Inserte letras';
  }
 
- return this.num.hasError('apellido paterno invalido') ? 'Apellido invalido' : '';
+ return this.apaterno.hasError('apellido paterno invalido') ? 'Apellido invalido' : '';
 }
 getErrorMessageamaterno() {
  if (this.amaterno.hasError('required')) {
  return 'Escriba el apellido materno del nuevo empleador';
  }
 
-else if (this.num.hasError('pattern')) {
+else if (this.amaterno.hasError('pattern')) {
  return 'Inserte letras';
  }
 
- return this.num.hasError('apellido materno invalido') ? 'Apellido invalido' : '';
+ return this.amaterno.hasError('apellido materno invalido') ? 'Apellido invalido' : '';
 }
 
  getErrorMessageNum() {
@@ -93,20 +113,20 @@ else if (this.num.hasError('required')) {
 }
 
  getErrorMessageTarjeta() {
- if (this.num.hasError('minlength')) {
+ if (this.tarjeta.hasError('minlength')) {
  return 'Minimo 8 digitos';
  }
 
- else if (this.num.hasError('maxlength')) {
+ else if (this.tarjeta.hasError('maxlength')) {
  return 'Maximo 8 digitos';
  }
-else if (this.num.hasError('pattern')) {
+else if (this.tarjeta.hasError('pattern')) {
  return 'Inserte numeros';
  }
-else if (this.num.hasError('required')) {
+else if (this.tarjeta.hasError('required')) {
  return 'Inserte el numero de tarjeta';
  }
- return this.num.hasError('numero de tarjeta') ? 'Numero de tarjeta invalido' : '';
+ return this.tarjeta.hasError('numero de tarjeta') ? 'Numero de tarjeta invalido' : '';
 }
 
 getErrorMessageDepartamento() {

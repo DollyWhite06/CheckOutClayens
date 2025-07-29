@@ -1,0 +1,56 @@
+
+ <main class="form">
+
+
+<h2 style="text-align: center;">EDITAR EMPLEADO</h2>
+
+<form class="formulario">
+  <mat-form-field appearance="fill" style="width: 100%;">
+    <input matInput placeholder="Nombre" [formControl]="nombre">
+     @if (nombre.invalid) {
+     <mat-error>{{getErrorMessageNombre()}}</mat-error>}
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" style="width: 100%;">
+    <input matInput placeholder="Apellido Paterno" [formControl]="apellidoPaterno">
+   @if (apellidoPaterno.invalid) {
+     <mat-error>{{getErrorMessageapellidoPaterno()}}</mat-error>}
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" style="width: 100%;">
+    <input matInput placeholder="Apellido Materno" [formControl]="apellidoMaterno">
+   @if (apellidoMaterno.invalid) {
+     <mat-error>{{getErrorMessageapellidoMaterno()}}</mat-error>}
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" style="width: 100%;">
+    <input matInput placeholder="Teléfono" [formControl]="telefono">
+     @if (telefono.invalid) {
+     <mat-error>{{getErrorMessagetelefono()}}</mat-error>}
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" style="width: 100%;">
+    <input matInput placeholder="Correo" [formControl]="correo">
+   @if (correo.invalid) {
+     <mat-error>{{getErrorMessagecorreo()}}</mat-error>}
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" style="width: 100%;">
+    <input matInput placeholder="Rol" [formControl]="rol">
+     @if (rol.invalid) {
+     <mat-error>{{getErrorMessageRol()}}</mat-error>}
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" style="width: 100%;">
+    <input matInput placeholder="Departamento" [formControl]="departamento">
+   @if (departamento.invalid) {
+     <mat-error>{{getErrorMessageDepartamento()}}</mat-error>}
+  </mat-form-field>
+
+  <div style="display: flex; justify-content: space-around; margin-top: 20px;">
+    <button class="boton" (click)="cancelar()">Cancelar</button>
+    <button class="boton" (click)="guardar()">Guardar</button>
+  </div>
+</form>
+
+</main>
