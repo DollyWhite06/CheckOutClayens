@@ -1,0 +1,131 @@
+/*
+ * Contenedor principal de la página de detalle.
+ * Usamos flexbox para centrar el spinner de carga.
+ */
+.detail-container, .loading-container {
+  padding: 24px 32px;
+  background-color: #F0F2F5; /* Mismo fondo gris claro que otras páginas */
+  min-height: 100vh;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  color: #7B868C;
+}
+
+/*
+ * Cabecera de la página: Botón de volver, nombre y acciones.
+ */
+.detail-header {
+  display: flex;
+  align-items: center;
+  gap: 16px; /* Espacio entre elementos */
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.header-info {
+  flex-grow: 1; /* Empuja las acciones a la derecha */
+}
+
+.header-info h1 {
+  margin: 0;
+  color: #2F3E50; /* Azul oscuro */
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 16px;
+}
+
+/*
+ * Estilos para el chip de estado (Activo/Inactivo)
+ * Reutilizamos los mismos estilos de la tabla para consistencia.
+ */
+.status-chip {
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.85em;
+  color: white;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.status-chip.active {
+  background-color: #4CAF50; /* Verde */
+}
+
+.status-chip.inactive {
+  background-color: #7B868C; /* Gris */
+}
+
+/*
+ * Contenedor para las pestañas de Material.
+ */
+.tab-content {
+  padding: 24px 8px; /* Espacio interno para el contenido de cada pestaña */
+}
+
+/*
+ * Estilos para las tarjetas de información.
+ */
+mat-card {
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.info-grid div {
+  padding: 8px 0;
+}
+
+/*
+ * Estilos para la sección de credenciales
+ */
+.credential-section mat-card-title {
+  font-size: 1.1em;
+  font-weight: 500;
+  color: #2F3E50;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 16px;
+}
+
+.empty-state {
+  color: #7B868C;
+  padding: 24px;
+  text-align: center;
+  font-style: italic;
+  background-color: #fafafa;
+  border-radius: 8px;
+}
+
+/*
+ * Estilos para la lista de credenciales.
+ */
+mat-list-item .mat-mdc-list-item-unscoped-content {
+  display: flex;
+  align-items: center;
+}
+
+mat-list-item mat-icon[matListItemIcon] {
+  color: #E8821F; /* Naranja */
+  margin-right: 16px;
+}
+
+/*
+ * Mueve los botones de acción en la lista a la derecha.
+ */
+mat-list-item button[mat-icon-button] {
+  margin-left: auto;
+}

@@ -1,54 +1,48 @@
-
-    <mat-toolbar >
-      <img   src="assets/LogoPetite.png" alt="Logo">
-
-    </mat-toolbar>
-
+<mat-toolbar>
+  <img src="assets/LogoPetite.png" alt="Logo">
+</mat-toolbar>
 <main>
-
- <main class="content2">
-
-     <mat-card class="formulario">
-    <div>
-    <div class="inicioSesion"> 
+  <main class="content2">
+    <mat-card class="formulario">
+      <div class="inicioSesion"> 
         <h1 class="titulo"> Clayens Mexico </h1>
         <h3 class="subtitulo"> Iniciar sesion </h3>
-    </div>
-    </div>
+      </div>
 
-     <div>
-    
-    <mat-form-field class="inputs">
-     <mat-label>Email</mat-label>
-     <input matInput placeholder="correo@ejemplo.com" [formControl]="email" required>
-     @if (email.invalid) {
-     <mat-error>{{getErrorMessageEmail()}}</mat-error>
-     }
-     
-    </mat-form-field>
-    <mat-form-field class="inputs">
-     <mat-label>Password</mat-label>
-     <input matInput placeholder="Contraseña" [formControl]="password" required [type]="hide ? 'password' : 'text'">
-     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-     </button>
-     >
-     @if (password.invalid) {
-     <mat-error>{{getErrorMessagePassword()}}</mat-error>
-     } </mat-form-field>
-     <section>
-     <div >
-    <button class="boton-Crear" style="background-color: #E8821F;" mat-flat-button >Iniciar</button>
-     </div>
-     </section>
-    </div>
-    <br>
-    <div> 
-      <h3 class="texto"> ¿Aun no tienes una cuenta? <a style="color: #E8821F;" href="register">Registrar</a></h3>
-       <h3 class="texto"> ¿Olvidaste tu contraseña? <a style="color: #E8821F;" href="recoverpassword">Recuperar cuenta</a></h3>
-    </div>
+      <form (ngSubmit)="iniciarSesion()">
+        <mat-form-field class="inputs">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="correo@ejemplo.com" [formControl]="email" required>
+          @if (email.invalid && (email.dirty || email.touched)) {
+            <mat-error>{{ getErrorMessageEmail() }}</mat-error>
+          }
+        </mat-form-field>
+        
+        <mat-form-field class="inputs">
+          <mat-label>Password</mat-label>
+          <input matInput placeholder="Contraseña" [formControl]="password" required [type]="hide ? 'password' : 'text'">
+          <button mat-icon-button matSuffix (click)="hide = !hide" type="button" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+          @if (password.invalid && (password.dirty || password.touched)) {
+            <mat-error>{{ getErrorMessagePassword() }}</mat-error>
+          }
+        </mat-form-field>
 
-    
+        <section>
+          <div>
+            <button class="boton-Crear" style="background-color: #E8821F;" mat-flat-button type="submit" [disabled]="email.invalid || password.invalid || cargando">
+              {{ cargando ? 'Ingresando...' : 'Iniciar Sesión' }}
+            </button>
+          </div>
+        </section>
+      </form>
+      <br>
+
+      <div> 
+        <h3 class="texto"> ¿Aún no tienes una cuenta? <a style="color: #E8821F;" routerLink="/register">Registrar</a></h3>
+        <h3 class="texto"> ¿Olvidaste tu contraseña? <a style="color: #E8821F;" routerLink="/recoverpassword">Recuperar cuenta</a></h3>
+      </div>
     </mat-card>
-
+  </main>
 </main>

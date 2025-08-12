@@ -1,0 +1,6 @@
+/* src/styles.css */
+/* src/styles.css */
+.snackbar-error { background-color: #f44336; color: white; }
+.snackbar-success { background-color: #4CAF50; color: white; }
+.snackbar-error .mat-simple-snackbar-action { color: white; }
+.snackbar-success .mat-simple-snackbar-action { color: white; }

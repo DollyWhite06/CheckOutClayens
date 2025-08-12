@@ -1,0 +1,25 @@
+:host {
+  display: flex;
+  align-items: center;
+}
+.snackbar-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.snackbar-icon {
+  margin-right: 12px;
+  font-size: 24px;
+}
+.message-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.snackbar-title {
+  font-weight: bold;
+}
+.snackbar-subtitle {
+  font-size: 0.9em;
+  opacity: 0.9;
+}

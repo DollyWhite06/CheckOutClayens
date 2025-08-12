@@ -20,6 +20,8 @@ import { RegistrocasetaComponent } from './registrocaseta/registrocaseta.compone
 import { EmpleadoscasetaComponent } from './empleadoscaseta/empleadoscaseta.component';
 import { AccesoscasetaComponent } from './accesoscaseta/accesoscaseta.component';
 import { KpicasetaComponent } from './kpicaseta/kpicaseta.component';
+import { authGuard } from './guards/auth.guard';
+import { EmployeeDetailComponent } from './components/employee-detail/employee-detail.component';
 
 export const routes: Routes = [
 {path: 'home', component: HomeComponent }, //listo
@@ -30,19 +32,21 @@ export const routes: Routes = [
 {path: 'nuevacontrasena', component: NewPasswordComponent}, //nueva contraseña
 {path: 'modificar', component: ModifyDataComponent}, // editar datos de usuario
 {path: 'cambiarcontrasena', component: ChangedPasswordComponent }, //listo - cambiar contraseña usuario
-{path: 'homerh', component: HomerhComponent},
+{path: 'homerh', component: HomerhComponent, canActivate: [authGuard], data: { roles: ['HR', 'ADMIN'] } }, //listo
 {path: 'homecaseta', component: HomecasetaComponent},
 {path: 'empleadoscaseta', component: EmpleadoscasetaComponent},
 {path: 'nuevorh', component: NuevoempleadorhComponent}, //falda modal
 {path: 'visitasrh', component: VisitasrhComponent},
-{path: 'empleadosrh', component: EmpleadosrhComponent}, //falta modal
+{path: 'empleadosrh', component: EmpleadosrhComponent, canActivate: [authGuard], data: { roles: ['HR', 'ADMIN'] } }, //falta modal
 {path: 'visitantes', component: RegistrocasetaComponent}, //falta modal
 {path: 'asisrh', component: AsistenciasrhComponent},
 {path: 'accesos', component: AccesoscasetaComponent}, //faltan los datos
 {path: 'kpirh', component: KpirhComponent},
 {path: 'kpicaseta', component: KpicasetaComponent},
 
-
+{
+    path: 'empleadosrh/detalle/:code', component: EmployeeDetailComponent, canActivate: [authGuard], data: { roles: ['ADMIN', 'HR'] } // Protegida por los mismos roles
+},
 
 //borradores
 {path: 'rhgestion', component: GestionusuariosComponent }, //para borradores

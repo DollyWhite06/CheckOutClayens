@@ -1,0 +1,51 @@
+<h1 mat-dialog-title>{{ isEditMode ? 'Editar Empleado' : 'Nuevo Empleado' }}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="employeeForm">
+    <div class="form-grid">
+      <mat-form-field appearance="outline">
+        <mat-label>Código de Empleado</mat-label>
+        <input matInput formControlName="employeeCode" required>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre(s)</mat-label>
+        <input matInput formControlName="nombre" required>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Apellido Paterno</mat-label>
+        <input matInput formControlName="paterno" required>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Apellido Materno</mat-label>
+        <input matInput formControlName="materno">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Departamento</mat-label>
+        <mat-select formControlName="departmentId" required>
+          <mat-option *ngFor="let depto of data.departamentos" [value]="depto.id">
+            {{ depto.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Puesto</mat-label>
+        <input matInput formControlName="position">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha de Contratación</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="hireDate" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-flat-button color="primary" [disabled]="employeeForm.invalid || isSaving" (click)="onSave()">
+    {{ isSaving ? 'Guardando...' : 'Guardar' }}
+  </button>
+</div>

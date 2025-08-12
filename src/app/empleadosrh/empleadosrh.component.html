@@ -1,134 +1,148 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gestión de Empleados</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-</head>
-<body>
-  <div class="container">
-    <aside class="sidebar">
-<div class="logo">
-
-<img src="assets/LogoPetite.png" alt="logo">
-
-      </div>    
-      
-      <div class="user-info">
-
-        <div class="user-icon">👤</div>
-        <p>Rene Arteaga Meza</p>
-      
-        <button>Página principal</button>
-        <button>Registro visitantes</button>
-        <button>Accesos</button>
-        <button>Reportes/KPI</button>
-
-           </div>    
-      <a class="logout" href="#">Cerrar sesión</a>
-    </aside>
-
-    <main class="main-content">
-      <header class="header">
-        <h1 style="color: #2F3E50; font-size: 30px;">GESTIÓN DE EMPLEADOS</h1>
-        
-      </header>
-
-      
-
-
- <div class="filtros" >
-
-        <mat-form-field style="width: 20%;">
-     <mat-label>Nombre completo</mat-label>
-     <input matInput placeholder="Nombre completo del empleado" [formControl]="nombre" required>
-     @if (nombre.invalid) {
-     <mat-error>{{getErrorMessageNombre()}}</mat-error>}
-        </mat-form-field>
-
-        <button >  <i class="fas fa-search icon"   title="Buscar"></i> <br> 
-</button>
-        <button class="clear" (click)="limpiarnom()">Clear</button>
-
-        <mat-form-field>
-     <mat-label>Num. empleado</mat-label>
-     <input matInput placeholder="Num. empleado" [formControl]="numempleado" required>
-     @if (numempleado.invalid) {
-     <mat-error>{{getErrorMessageNum()}}</mat-error>}
-        </mat-form-field>
-
-        <button>  <i class="fas fa-search icon"   title="Buscar"></i> <br> 
-</button>
-        <button class="clear" (click)="limpiarnum()">Clear</button>
-
-       <select class="selects">
-          <option value="">Dpto</option>
-          <option value="activo">Produccion</option>
-          <option value="inactivo">Administrativo</option>
-        </select>
- <select class="selects">
-          <option value="">Rol</option>
-        <option value="activo">Produccion</option>
-          <option value="inactivo">Administrativo</option>
-        </select>     
-         <select class="selects">
-          <option value="">Estado</option>
-          <option value="activo">Activo</option>
-          <option value="inactivo">Inactivo</option>
-        </select>
-
-        <div class="fecha">
-          <input type="date" id="fecha" value="2025-06-01">
-        </div>
-        <button style="background-color: white;">      <i class="fas fa-plus-circle icon"  (click)="abrirModal()" title="Agregar nuevo"></i><br> 
-</button>
+<mat-sidenav-container class="page-container">
+  
+  <!-- === SIDEBAR (Reutilizamos el diseño del dashboard) === -->
+  <mat-sidenav mode="side" opened class="sidebar">
+    <!-- ... (Pega aquí el código completo del sidebar del HomerhComponent) ... -->
+    <!-- Logo, User Profile, Navigation Links, User Actions -->
+    <div class="logo-container">
+      <img src="assets/LogoPetite.png" alt="Logo Clayens">
+    </div>
+       <!-- Información del Usuario Logueado -->
+    <div class="user-profile">
+      <div class="user-avatar">
+        <mat-icon>account_circle</mat-icon>
       </div>
+      <h3 class="user-name">{{ usuarioActual?.firstName }} {{ usuarioActual?.lastName }}</h3>
+      <p class="user-role">{{ usuarioActual?.role?.name }}</p>
+    </div>
+    <mat-nav-list class="navigation-links">
+     <a mat-list-item routerLink="/homerh" class="nav-item">
+        <mat-icon matListItemIcon>dashboard</mat-icon>
+        <span matListItemTitle style="color: white;">Dashboard</span>
+      </a>
+      <a mat-list-item routerLink="/empleadosrh" class="nav-item">
+        <mat-icon matListItemIcon>groups</mat-icon>
+        <span matListItemTitle style="color: orange">Gestión de Empleados</span>
+      </a>
+      <!-- ... otros links ... -->
+    </mat-nav-list>
+    <!-- Acciones de Usuario y Cierre de Sesión -->
+    <div class="user-actions">
+      <button mat-button (click)="actualizarDatos()">
+        <mat-icon>manage_accounts</mat-icon>
+        Actualizar Datos
+      </button>
+      <button mat-button (click)="cambiarContrasena()">
+        <mat-icon>password</mat-icon>
+        Cambiar Contraseña
+      </button>
+      <button mat-stroked-button color="warn" class="logout-button" (click)="cerrarSesion()">
+        <mat-icon>logout</mat-icon>
+        Cerrar Sesión
+      </button>
+    </div>
+  </mat-sidenav>
+  <!-- === CONTENIDO PRINCIPAL DE LA PÁGINA === -->
+  <mat-sidenav-content class="main-content">
+    <header class="page-header">
+      <h1>Gestión de Empleados</h1>
+      <button mat-flat-button color="primary" (click)="abrirFormulario()">
+        <mat-icon>add</mat-icon>
+        Nuevo Empleado
+      </button>
+    </header>
+
+    <!-- Panel de Filtros -->
+    <mat-card class="filter-card" [formGroup]="filterForm">
+      <mat-card-content class="filter-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>Buscar por nombre, código...</mat-label>
+          <input matInput formControlName="search" placeholder="Ej. Juan Pérez">
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Departamento</mat-label>
+          <mat-select formControlName="departmentId">
+            <mat-option [value]="null">Todos</mat-option>
+            <mat-option *ngFor="let depto of departamentos" [value]="depto.id">
+              {{ depto.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
         
+        <mat-form-field appearance="outline">
+          <mat-label>Estado</mat-label>
+          <mat-select formControlName="isActive">
+            <mat-option [value]="null">Todos</mat-option>
+            <mat-option [value]="true">Activos</mat-option>
+            <mat-option [value]="false">Inactivos</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card-content>
+    </mat-card>
 
+    <!-- Contenedor de la Tabla -->
+    <div class="table-container mat-elevation-z8">
+      <div *ngIf="isLoading" class="loading-shade">
+        <mat-spinner></mat-spinner>
+      </div>
 
-      <table class="tabla-empleados">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Ap paterno</th>
-            <th>Ap Materno</th>
-            <th>Correo electrónico</th>
-            <th>Rol</th>
-            <th>Dpto</th>
-            <th>Estado</th>
-            <th>Editar</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>René</td>
-            <td>Arteaga</td>
-            <td>Meza</td>
-            <td>rene22.com</td>
-            <td>Adm</td>
-            <td>Des</td>
-            <td><span class="estado activo">Activo</span></td>
-            <td>
-    <i class="fas fa-cog icon"   title="Configuracion"></i> <br> 
-            </td>
-          </tr>
-          <tr>
-            <td>Victoria</td>
-            <td>Reyes</td>
-            <td>Meza</td>
-            <td>vicky.com</td>
-            <td>Pract</td>
-            <td>Des</td>
-            <td><span class="estado inactivo">Inactivo</span></td>
-            <td>
-    <i class="fas fa-cog icon"   title="Configuracion"></i> <br> 
-            </td>
-          </tr>
-        </tbody>
+      <table mat-table [dataSource]="dataSource" matSort>
+        <!-- Columna Código de Empleado -->
+        <ng-container matColumnDef="employeeCode">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Código</th>
+          <td mat-cell *matCellDef="let emp">{{ emp.employeeCode }}</td>
+        </ng-container>
+
+        <!-- Columna Nombre Completo -->
+        <ng-container matColumnDef="nombreCompleto">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre Completo</th>
+          <td mat-cell *matCellDef="let emp">{{ emp.nombre }} {{ emp.paterno }} {{ emp.materno }}</td>
+        </ng-container>
+
+        <!-- Columna Departamento -->
+        <ng-container matColumnDef="departamento">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Departamento</th>
+          <td mat-cell *matCellDef="let emp">{{ emp.department?.name }}</td>
+        </ng-container>
+
+        <!-- Columna Estado -->
+        <ng-container matColumnDef="estado">
+          <th mat-header-cell *matHeaderCellDef>Estado</th>
+          <td mat-cell *matCellDef="let emp">
+            <span class="status-chip" [ngClass]="emp.isActive ? 'active' : 'inactive'">
+              {{ emp.isActive ? 'Activo' : 'Inactivo' }}
+            </span>
+          </td>
+        </ng-container>
+
+        <!-- Columna Acciones -->
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <td mat-cell *matCellDef="let emp">
+            <button mat-icon-button color="primary" (click)="abrirFormulario(emp)" matTooltip="Editar Empleado">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="accent" (click)="gestionarCredenciales(emp)" matTooltip="Gestionar Credenciales">
+              <mat-icon>badge</mat-icon>
+            </button>
+             <button mat-icon-button color="warn" (click)="cambiarEstado(emp)" [matTooltip]="emp.isActive ? 'Desactivar Empleado' : 'Activar Empleado'">
+              <mat-icon>{{ emp.isActive ? 'toggle_off' : 'toggle_on' }}</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="5">No se encontraron empleados que coincidan con los filtros.</td>
+        </tr>
       </table>
-    </main>
-  </div>
-</body>
-</html>
+
+      <!-- Paginador -->
+      <mat-paginator [pageSizeOptions]="[10, 25, 100]" showFirstLastButtons></mat-paginator>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

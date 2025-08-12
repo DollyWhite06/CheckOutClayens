@@ -1,66 +1,154 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portal de Recursos Humanos</title>
-</head>
-<body>
-  <div class="container">
-    <aside class="sidebar">
-      <div class="logo">
+<!-- homerh.component.html -->
+<mat-sidenav-container class="dashboard-container">
+  
+  <!-- === SIDEBAR DE NAVEGACIÓN === -->
+  <mat-sidenav mode="side" opened class="sidebar">
+    <div class="logo-container">
+      <img src="assets/LogoPetite.png" alt="Logo Clayens">
+    </div>
 
-<img src="assets/LogoPetite.png" alt="logo">
-
+    <!-- Información del Usuario Logueado -->
+    <div class="user-profile">
+      <div class="user-avatar">
+        <mat-icon>account_circle</mat-icon>
       </div>
-      <div class="user-info">
-        <div class="user-icon">👤</div>
-        <p>Rene Arteaga Meza</p>
-        <button>Actualizar datos</button>
-        <button>Cambiar contraseña</button>
+      <h3 class="user-name">{{ usuarioActual?.firstName }} {{ usuarioActual?.lastName }}</h3>
+      <p class="user-role">{{ usuarioActual?.role?.name }}</p>
+    </div>
+    
+    <!-- Menú de Navegación Principal -->
+    <mat-nav-list class="navigation-links">
+      <a mat-list-item routerLink="/home" class="nav-item">
+        <mat-icon matListItemIcon>dashboard</mat-icon>
+        <span matListItemTitle style="color: white;">Dashboard</span>
+      </a>
+      <a mat-list-item routerLink="/empleadosrh" class="nav-item">
+        <mat-icon matListItemIcon>groups</mat-icon>
+        <span matListItemTitle style="color: white;">Gestión de Empleados</span>
+      </a>
+      <a mat-list-item routerLink="/visitasrh" class="nav-item">
+        <mat-icon matListItemIcon>transfer_within_a_station</mat-icon>
+        <span matListItemTitle style="color: white;">Gestión de Visitas</span>
+      </a>
+      <a mat-list-item routerLink="/asisrh" class="nav-item">
+        <mat-icon matListItemIcon>schedule</mat-icon>
+        <span matListItemTitle style="color: white;">Reportes de Asistencia</span>
+      </a>
+    </mat-nav-list>
+
+    <!-- Acciones de Usuario y Cierre de Sesión -->
+    <div class="user-actions">
+      <button mat-button (click)="actualizarDatos()">
+        <mat-icon>manage_accounts</mat-icon>
+        Actualizar Datos
+      </button>
+      <button mat-button (click)="cambiarContrasena()">
+        <mat-icon>password</mat-icon>
+        Cambiar Contraseña
+      </button>
+      <button mat-stroked-button color="warn" class="logout-button" (click)="cerrarSesion()">
+        <mat-icon>logout</mat-icon>
+        Cerrar Sesión
+      </button>
+    </div>
+  </mat-sidenav>
+
+  <!-- === CONTENIDO PRINCIPAL DEL DASHBOARD === -->
+  <mat-sidenav-content class="main-content">
+    <header class="main-header">
+      <h1>Portal de Recursos Humanos</h1>
+      <p>Resumen del día: {{ fechaActual | date:'fullDate' }}</p>
+    </header>
+
+    <!-- KPIs Rápidos y Estado en Vivo -->
+    <section class="kpi-grid">
+      <!-- Tarjeta de Asistencia de Hoy -->
+      <mat-card class="kpi-card live-status">
+        <mat-card-header>
+          <mat-icon mat-card-avatar>supervised_user_circle</mat-icon>
+          <mat-card-title>Estado de Asistencia Hoy</mat-card-title>
+          <mat-card-subtitle>Personal activo en planta</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content *ngIf="estadoEnVivo">
+          <div class="live-metric on-time">
+            <span class="metric-value">{{ estadoEnVivo.presentes }}</span>
+            <span class="metric-label">Presentes</span>
+          </div>
+          <div class="live-metric late">
+            <span class="metric-value">{{ estadoEnVivo.retardos }}</span>
+            <span class="metric-label">Retardos</span>
+          </div>
+          <div class="live-metric absent">
+            <span class="metric-value">{{ estadoEnVivo.ausentes }}</span>
+            <span class="metric-label">Ausentes</span>
+          </div>
+        </mat-card-content>
+        <div *ngIf="!estadoEnVivo" class="loading-spinner">
+          <mat-spinner diameter="40"></mat-spinner>
+        </div>
+      </mat-card>
+      
+      <!-- Tarjeta de Visitantes Actuales -->
+      <mat-card class="kpi-card visitors">
+        <mat-card-header>
+            <mat-icon mat-card-avatar>transfer_within_a_station</mat-icon>
+          <mat-card-title>Visitantes en Planta</mat-card-title>
+          <mat-card-subtitle>Personas externas activas</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content *ngIf="visitantesActivos !== null">
+          <div class="main-metric">{{ visitantesActivos }}</div>
+          <p>visitantes actualmente dentro</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button routerLink="/visitasrh">GESTIONAR VISITAS</button>
+        </mat-card-actions>
+      </mat-card>
+      
+      <!-- Tarjeta de Tasa de Asistencia (Semana) -->
+      <mat-card class="kpi-card attendance-rate">
+        <mat-card-header>
+            <mat-icon mat-card-avatar>pie_chart</mat-icon>
+          <mat-card-title>Tasa de Asistencia</mat-card-title>
+          <mat-card-subtitle>Últimos 7 días</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content *ngIf="kpisSemana">
+          <div class="main-metric">{{ kpisSemana.attendanceRate }}</div>
+          <p>de asistencia esta semana</p>
+        </mat-card-content>
+         <mat-card-actions>
+          <button mat-button routerLink="/asisrh">VER REPORTES</button>
+        </mat-card-actions>
+      </mat-card>
+    </section>
+
+    <!-- Accesos Directos a Módulos Principales -->
+    <section class="quick-actions">
+      <h2>Accesos Directos</h2>
+      <div class="action-grid">
+        <mat-card class="action-card" routerLink="/empleadosrh">
+          <mat-icon class="action-icon">groups</mat-icon>
+          <mat-card-title>Gestión de Empleados</mat-card-title>
+          <mat-card-content>
+            <p>Crear, editar y gestionar al personal de la planta.</p>
+          </mat-card-content>
+        </mat-card>
+        
+        <mat-card class="action-card" routerLink="/asisrh">
+          <mat-icon class="action-icon">insert_chart_outlined</mat-icon>
+          <mat-card-title>Reportes y KPIs</mat-card-title>
+          <mat-card-content>
+            <p>Analizar la asistencia, puntualidad y horas extra.</p>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="action-card" routerLink="/admin/devices"> <!-- Suponiendo una ruta de admin -->
+          <mat-icon class="action-icon">memory</mat-icon>
+          <mat-card-title>Configuración</mat-card-title>
+          <mat-card-content>
+            <p>Administrar dispositivos, zonas y permisos de acceso.</p>
+          </mat-card-content>
+        </mat-card>
       </div>
-      <a href="#" class="logout">Cerrar sesión</a>
-    </aside>
-
-    <main class="main-content">
-      <header>
-        <h1 style="color: #2F3E50; font-size: 30px;">PORTAL DE RECURSOS HUMANOS</h1>
-        <img src="assets/genteclayens3.png" alt="Imagen de empleados" class="banner-img">
-      </header>
-
-      <section class="cards-grid">
-        <button class="card orange">
-          <h3>Gestión de visitas</h3>
-          <span>🚛</span>
-        </button>
-        <button class="card blue">
-          <h3>9 Visitantes en planta</h3>
-        </button>
-        <button class="card orange">
-          <h3>Gestión de asistencia</h3>
-          <span>🕒</span>
-        </button>
-              </section>
-
-                <br>
-
-
-                      <section class="cards-grid">
-
-        <button class="card blue">
-          <h3>90% de asistencia</h3>
-          <div class="pie-chart"></div>
-        </button>
-        <button class="card orange">
-          <h3>Gestión de empleados</h3>
-          <span>📋</span>
-        </button>
-        <button class="card blue">
-          <h3>Reportes / KPI</h3>
-          <span>📈</span>
-        </button>
-      </section>
-    </main>
-  </div>
-</body>
-</html>
+    </section>
+  </mat-sidenav-content>
+</mat-sidenav-container>

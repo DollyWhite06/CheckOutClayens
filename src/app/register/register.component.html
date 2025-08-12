@@ -1,87 +1,115 @@
-<p>
-    <mat-toolbar>
-      <img   src="assets/LogoPetite.png" alt="Logo">
-    </mat-toolbar>
-  </p>
+<mat-toolbar>
+  <img src="assets/LogoPetite.png" alt="Logo">
+</mat-toolbar>
 <main>
+  <main class="content2">
+    <mat-card class="formulario">
+      <div>
+        <div class="inicioSesion"> 
+          <h1 class="titulo"> Clayens Mexico</h1>
+          <h3 class="subtitulo"> Crear una nueva cuenta. </h3>
+        </div>
+      </div>
 
- <main class="content2">
+      <form [formGroup]="formularioRegistro" (ngSubmit)="crearCuenta()">
+        
+        <!-- Campo Nombre -->
+        <mat-form-field class="inputs">
+          <mat-label>Nombre</mat-label>
+          <input matInput placeholder="Nombre" formControlName="name" required>
+          @if (name.invalid && name.touched) {
+            <mat-error>Debes ingresar tu nombre.</mat-error>
+          }
+        </mat-form-field>
 
-     <mat-card class="formulario">
-    <div>
-    <div class="inicioSesion"> 
-        <h1 class="titulo"> Clayens Mexico</h1>
-        <h3 class="subtitulo"> Crear una nueva cuenta. </h3>
-    </div>
-    </div>
+        <!-- Campo Apellido Paterno -->
+        <mat-form-field class="inputs">
+          <mat-label>Apellido paterno</mat-label>
+          <input matInput placeholder="Apellido paterno" formControlName="apaterno" required>
+          @if (apaterno.invalid && apaterno.touched) {
+            <mat-error>Debes ingresar tu apellido paterno.</mat-error>
+          }
+        </mat-form-field>
 
-     <div>
-     <mat-form-field class="inputs">
-     <mat-label>Nombre</mat-label>
-     <input matInput placeholder="Nombre" [formControl]="name" required>
-    @if (name.invalid) {
-     <mat-error>{{getErrorMessagename()}}</mat-error>
-     }
-      </mat-form-field>
-
-           <mat-form-field class="inputs">
-     <mat-label>Apellido paterno</mat-label>
-     <input matInput placeholder="Apellido paterno" [formControl]="apaterno" required>
-    @if (name.invalid) {
-     <mat-error>{{getErrorMessageapaterno()}}</mat-error>
-     }
-      </mat-form-field>
-
-           <mat-form-field class="inputs">
-     <mat-label>Apellido materno</mat-label>
-     <input matInput placeholder="Apellido materno" [formControl]="amaterno" required>
-    @if (name.invalid) {
-     <mat-error>{{getErrorMessageamaterno()}}</mat-error>
-     }
-      </mat-form-field>
-
-
+        <!-- Campo Apellido Materno -->
+        <mat-form-field class="inputs">
+          <mat-label>Apellido materno</mat-label>
+          <input matInput placeholder="Apellido materno" formControlName="amaterno" required>
+           @if (amaterno.invalid && amaterno.touched) {
+            <mat-error>Debes ingresar tu apellido materno.</mat-error>
+          }
+        </mat-form-field>
       
-           <mat-form-field class="inputs">
-     <mat-label>Numero telefonico</mat-label>
-     <input matInput placeholder="Numero telefonico" [formControl]="numtelefonico" required>
-    @if (numtelefonico.invalid) {
-     <mat-error>{{getErrorMessageNumtelefonico()}}</mat-error>
-     }
-      </mat-form-field>
-    
-    <mat-form-field class="inputs">
-     <mat-label>Email</mat-label>
-     <input matInput placeholder="correo@ejemplo.com" [formControl]="email" required>
-     @if (email.invalid) {
-     <mat-error>{{getErrorMessageEmail()}}</mat-error>
-     }
-     
-    </mat-form-field>
-    <mat-form-field class="inputs">
-     <mat-label>Password</mat-label>
-     <input matInput placeholder="Contraseña" [formControl]="password" required [type]="hide ? 'password' : 'text'">
-     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-     </button>
-     >
-     @if (password.invalid) {
-     <mat-error>{{getErrorMessagePassword()}}</mat-error>
-     } </mat-form-field>
-     <section>
-     <div >
-    <button class="boton-Crear" style="background-color: #E8821F;"  mat-flat-button >Crear cuenta</button>
-     </div>
-     </section>
-    </div>
-  
-    <div> 
-      <h3 class="texto"> ¿Ya tienes una cuenta? <a style="color: #E8821F;" href="login">Iniciar sesion</a></h3>
+        <!-- Campo Número Telefónico (REINCORPORADO) -->
+        <mat-form-field class="inputs">
+          <mat-label>Número telefónico</mat-label>
+          <input matInput type="tel" placeholder="Ej. 5512345678" formControlName="numtelefonico" required>
+          @if (numtelefonico.hasError('required') && numtelefonico.touched) {
+            <mat-error>Debes ingresar tu número de teléfono.</mat-error>
+          }
+          @if (numtelefonico.hasError('pattern') && numtelefonico.touched) {
+            <mat-error>El número debe contener 10 dígitos.</mat-error>
+          }
+        </mat-form-field>
+        
+        <!-- Campo Username -->
+        <mat-form-field class="inputs">
+          <mat-label>Nombre de Usuario</mat-label>
+          <input matInput formControlName="username" required>
+          @if (username.hasError('required') && username.touched) {
+            <mat-error>El nombre de usuario es requerido.</mat-error>
+          }
+          @if (username.hasError('minlength') && username.touched) {
+            <mat-error>Debe tener al menos 3 caracteres.</mat-error>
+          }
+        </mat-form-field>
+        
+        <!-- Campo Email -->
+        <mat-form-field class="inputs">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" placeholder="correo@ejemplo.com" formControlName="email" required>
+          @if (email.hasError('required') && email.touched) {
+            <mat-error>Debes ingresar tu email.</mat-error>
+          }
+          @if (email.hasError('email') && email.touched) {
+            <mat-error>El formato del email no es válido.</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Campo Contraseña -->
+        <mat-form-field class="inputs">
+          <mat-label>Contraseña</mat-label>
+          <input matInput formControlName="password" required [type]="hide ? 'password' : 'text'">
+          <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
+            <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+           @if (password.hasError('minlength') && password.touched) {
+            <mat-error>Debe tener al menos 8 caracteres.</mat-error>
+          }
+        </mat-form-field>
+        
+        <!-- Campo Confirmar Contraseña -->
+        <mat-form-field class="inputs">
+          <mat-label>Confirmar Contraseña</mat-label>
+          <input matInput formControlName="password_confirmation" required [type]="hide ? 'password' : 'text'">
+          @if (password_confirmation.hasError('passwordsMismatch') && password_confirmation.touched) {
+            <mat-error>Las contraseñas no coinciden.</mat-error>
+          }
+        </mat-form-field>
+
+        <section>
+          <div>
+            <button class="boton-Crear" style="background-color: #E8821F;" mat-flat-button type="submit" [disabled]="formularioRegistro.invalid || cargando">
+              {{ cargando ? 'Creando cuenta...' : 'Crear Cuenta' }}
+            </button>
+          </div>
+        </section>
+      </form>
       <br>
-    </div>
-
-    
+      
+      <div> 
+        <h3 class="texto"> ¿Ya tienes una cuenta? <a style="color: #E8821F;" href="login">Iniciar sesión</a></h3>
+      </div>
     </mat-card>
-
-
+  </main>
 </main>

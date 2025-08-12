@@ -4,10 +4,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins&family=Roboto&display=swap');
 
 
-
-
-
-
 .titulo{
 font-family: 'Roboto', sans-serif;
     font-size: 60px;
@@ -29,7 +25,10 @@ font-family: 'Roboto', sans-serif;
     color: black;
     text-align: center;
 }
-
+.snackbar-error { background-color: #f44336; color: white; }
+.snackbar-success { background-color: #4CAF50; color: white; }
+.snackbar-error .mat-simple-snackbar-action { color: white; }
+.snackbar-success .mat-simple-snackbar-action { color: white; }
 
 
 

@@ -1,0 +1,87 @@
+/*
+ * :host es un selector especial que se aplica al elemento anfitrión
+ * del componente, en este caso, <app-employee-form>.
+ */
+:host {
+  display: block; /* Asegura que el componente ocupe el espacio correctamente */
+}
+
+/*
+ * Estilos para el título del diálogo.
+ * Angular Material añade la clase 'mat-mdc-dialog-title'.
+ */
+h1[mat-dialog-title] {
+  color: #2F3E50; /* Azul oscuro de tu paleta */
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+}
+
+/*
+ * Contenedor para el contenido del formulario.
+ */
+[mat-dialog-content] {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/*
+ * Usamos CSS Grid para organizar los campos del formulario
+ * en dos columnas en pantallas grandes.
+ */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Dos columnas de igual tamaño */
+  gap: 16px 20px; /* Espacio vertical y horizontal entre campos */
+}
+
+/*
+ * Hacemos que ciertos campos ocupen el ancho completo (dos columnas).
+ */
+.form-grid mat-form-field.full-width {
+  grid-column: 1 / -1; /* Ocupa desde la primera hasta la última columna */
+}
+
+/*
+ * En pantallas más pequeñas (menos de 600px de ancho),
+ * pasamos a una sola columna para mejorar la legibilidad.
+ */
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr; /* Una sola columna */
+  }
+}
+
+/*
+ * Estilos para los campos de formulario de Angular Material.
+ */
+mat-form-field {
+  width: 100%; /* Asegura que los campos llenen el espacio de su celda en la grilla */
+}
+
+/*
+ * Contenedor para los botones de acción (Cancelar, Guardar).
+ * 'align="end"' en el HTML ya los alinea a la derecha.
+ */
+[mat-dialog-actions] {
+  padding: 16px 24px;
+  border-top: 1px solid #e0e0e0;
+  margin-top: 24px;
+}
+
+/*
+ * Añadimos un pequeño espacio entre los botones.
+ */
+[mat-dialog-actions] button {
+  margin-left: 8px;
+}
+
+/*
+ * Estilo específico para el botón principal de Guardar.
+ */
+[mat-dialog-actions] button[mat-flat-button] {
+  background-color: #E8821F; /* Naranja de tu paleta */
+  color: white;
+}

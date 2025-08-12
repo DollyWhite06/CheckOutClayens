@@ -1,0 +1,110 @@
+<!-- Contenedor principal con un spinner de carga que se muestra mientras se obtienen los datos -->
+<div class="detail-container" *ngIf="employee; else loading">
+  
+  <!-- Cabecera de la página -->
+  <header class="detail-header">
+    <button mat-icon-button routerLink="/empleadosrh" matTooltip="Volver a la lista">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <div class="header-info">
+      <h1>{{ employee.nombre }} {{ employee.paterno }}</h1>
+      <span class="status-chip" [ngClass]="employee.isActive ? 'active' : 'inactive'">
+        {{ employee.isActive ? 'Activo' : 'Inactivo' }}
+      </span>
+    </div>
+    <div class="header-actions">
+      <button mat-flat-button color="primary" (click)="abrirFormularioEdicion()">
+        <mat-icon>edit</mat-icon>
+        Editar Datos
+      </button>
+    </div>
+  </header>
+
+  <!-- Sistema de Pestañas -->
+  <mat-tab-group animationDuration="0ms">
+    
+    <!-- Pestaña 1: Información General -->
+    <mat-tab label="Información General">
+      <div class="tab-content">
+        <mat-card>
+          <mat-card-content class="info-grid">
+            <div><strong>Código:</strong> {{ employee.employeeCode }}</div>
+            <div><strong>Email:</strong> {{ employee.email || 'No especificado' }}</div>
+            <div><strong>Puesto:</strong> {{ employee.position || 'No especificado' }}</div>
+            <div><strong>Departamento:</strong> {{ employee.department?.name || 'No asignado' }}</div>
+            <div><strong>Fecha Contratación:</strong> {{ employee.hireDate | date:'longDate' }}</div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-tab>
+
+    <!-- Pestaña 2: Credenciales de Acceso -->
+    <mat-tab label="Credenciales de Acceso">
+      <div class="tab-content">
+        <!-- Sección de Tarjetas RFID -->
+        <mat-card class="credential-section">
+          <mat-card-title>Tarjetas RFID Asignadas</mat-card-title>
+          <mat-card-content>
+            <div *ngIf="credenciales?.rfidCards.length === 0" class="empty-state">
+              <p>Este empleado no tiene tarjetas RFID asignadas.</p>
+            </div>
+            <mat-list *ngIf="credenciales?.rfidCards.length > 0">
+              <mat-list-item *ngFor="let rfid of credenciales?.rfidCards">
+                <mat-icon matListItemIcon>credit_card</mat-icon>
+                <div matListItemTitle>UID: {{ rfid.cardUid }}</div>
+                <div matListItemLine>Asignada el: {{ rfid.assignedDate | date }}</div>
+                <button mat-icon-button color="warn" (click)="desasignarRfid(rfid)" matTooltip="Desasignar Tarjeta">
+                  <mat-icon>link_off</mat-icon>
+                </button>
+              </mat-list-item>
+            </mat-list>
+          </mat-card-content>
+          <mat-card-actions align="end">
+            <button mat-button color="primary" (click)="asignarRfid()">Asignar Nueva Tarjeta</button>
+          </mat-card-actions>
+        </mat-card>
+
+        <!-- Sección de Huellas Dactilares -->
+        <mat-card class="credential-section">
+          <mat-card-title>Huellas Dactilares Registradas</mat-card-title>
+          <mat-card-content>
+             <div *ngIf="credenciales?.fingerprints.length === 0" class="empty-state">
+              <p>Este empleado no tiene huellas registradas.</p>
+            </div>
+            <mat-list *ngIf="credenciales?.fingerprints.length > 0">
+               <mat-list-item *ngFor="let fp of credenciales?.fingerprints">
+                <mat-icon matListItemIcon>fingerprint</mat-icon>
+                <div matListItemTitle>{{ fp.fingerPosition | titlecase }}</div>
+                <div matListItemLine>Registrada el: {{ fp.createdAt | date }}</div>
+                <button mat-icon-button color="warn" (click)="eliminarHuella(fp)" matTooltip="Eliminar Huella">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </mat-list-item>
+            </mat-list>
+          </mat-card-content>
+           <mat-card-actions align="end">
+            <button mat-button color="primary" (click)="registrarHuella()">Registrar Nueva Huella</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </mat-tab>
+
+    <!-- Pestaña 3: Permisos de Acceso -->
+    <mat-tab label="Permisos de Acceso">
+       <div class="tab-content">
+          <!-- ... Aquí iría la lógica para mostrar y gestionar los permisos de zona ... -->
+          <p>Funcionalidad de permisos de acceso en construcción.</p>
+       </div>
+    </mat-tab>
+
+  </mat-tab-group>
+
+</div>
+
+<!-- Template para el estado de carga -->
+<ng-template #loading>
+  <div class="loading-container">
+    <mat-spinner></mat-spinner>
+    <p>Cargando datos del empleado...</p>
+  </div>
+</ng-template>
